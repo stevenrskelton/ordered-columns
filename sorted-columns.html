@@ -1,0 +1,88 @@
+<!--
+@homepage https://github.com/stevenrskelton/sorted-columns
+@element sorted-columns
+@demo http://files.stevenskelton.ca/sorted-columns/examples/
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="sorted-columns" attributes="count">
+	<template>
+		<style>
+			.column {
+				box-sizing: border-box;
+				display: inline-block;
+				vertical-align: top;
+			}
+		</style>
+		<template repeat="{{width,i in columnWidths}}"><div
+			id="column{{i}}"
+			class="column"
+			style="width: {{width}};"
+		></div></template>
+		<div style="width:{{columnWidths[0]}};display:none">
+			<content id="hiddenDiv" select='section,[role="section"]'></content>
+		</div>
+	</template>
+	<script>
+	"use strict";
+	Polymer({
+		ready: function(){
+			var self = this;
+			self.columnWidths = self.getColumnWidths();
+			this.async(function() {
+				self.load();
+			});
+			window.addEventListener('resize', function(e) {
+				self.refresh.call(self);
+			});
+		},
+		count: 1,
+		observe: {
+			count: 'refresh'
+		},
+		refresh: function(){
+			var self = this;
+			self.columnWidths = self.getColumnWidths.call(self);
+			this.async(function() {
+				var hiddenDiv = self.$.hiddenDiv;
+				[].forEach.call(self.items, function(element,i){
+					hiddenDiv.appendChild(element);
+				});
+				var columns = self.shadowRoot.querySelectorAll('.column');
+				self.moveItems(self.items, columns);
+			});
+		},
+		load: function(){
+			this.items = this.$.hiddenDiv.getDistributedNodes();
+			var self = this;
+			var columns = this.shadowRoot.querySelectorAll('.column');
+			this.moveItems(this.items, columns);
+		},
+		moveItems: function(items, columns){
+			[].forEach.call(items, function(element,i){
+				var column = columns[0];
+				[].forEach.call(columns, function(c){
+					if(c.clientHeight < column.clientHeight) column = c;
+				});
+				column.appendChild(element);
+			});
+		},
+		getColumnWidths: function(){
+			var arr = [];
+			if(this.clientWidth === 0){
+				var min = Math.floor(100 / this.count);
+				for(var i=0;i<this.count-1;i++) arr.push(min + '%');
+				arr.push((100 - min * (this.count-1)) + '%');
+			}else{
+				var min = Math.floor(this.clientWidth / this.count);
+				for(var i=0;i<this.count-1;i++) arr.push(min + 'px');
+				arr.push((this.clientWidth - min * (this.count-1)) + 'px');
+			}
+			return arr;
+		},
+		columnWidths: null,
+		items: null
+	});
+	</script>
+</polymer-element>

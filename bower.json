@@ -1,0 +1,36 @@
+{
+  "name": "sorted-columns",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stevenrskelton/sorted-columns",
+  "description": "Polymer Web Component that builds ordered columns (timeline) from arbitrary content.",
+  "main": "sorted-columns.html",
+  "authors": [
+    "Steven Skelton"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "timeline",
+    "column",
+    "html",
+    "ordered",
+    "sorted",
+    "chronological"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#>=0.4.2"
+  },
+  "devDependencies": {
+    "core-elements": "Polymer/core-elements#>=0.4.2",
+    "prism-js": "prism-js#>=0.1.0"
+  }
+}
