@@ -1,9 +1,9 @@
 {
-  "name": "sorted-columns",
+  "name": "ordered-columns",
   "version": "0.0.1",
-  "homepage": "https://github.com/stevenrskelton/sorted-columns",
+  "homepage": "https://github.com/stevenrskelton/ordered-columns",
   "description": "Polymer Web Component that builds ordered columns (timeline) from arbitrary content.",
-  "main": "sorted-columns.html",
+  "main": "ordered-columns.html",
   "authors": [
     "Steven Skelton"
   ],

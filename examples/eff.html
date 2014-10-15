@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<script src="../../platform/platform.js" debug log="bind,ready,events"></script>
-	<link rel="import" href="../sorted-columns.html">
+	<link rel="import" href="../ordered-columns.html">
 	<link rel="import" href="project-docs.html">
 	<style shim-shadowdom>
 		body {
@@ -14,28 +14,28 @@
 			font-family: "Lucida Grande","Lucida Sans Unicode",Arial,sans-serif;
 			font-size: 14px;
 		}
-		eff-articles::shadow sorted-columns::shadow a {
+		eff-articles::shadow ordered-columns::shadow a {
 			color: #C00;
 			text-decoration: none;
 		}
-		eff-articles::shadow sorted-columns::shadow a:hover {
+		eff-articles::shadow ordered-columns::shadow a:hover {
 			text-decoration: underline;
 		}
-		eff-articles::shadow sorted-columns::shadow article {
+		eff-articles::shadow ordered-columns::shadow article {
 			padding: 8px;
 		}
-		eff-articles::shadow sorted-columns::shadow h2 {
+		eff-articles::shadow ordered-columns::shadow h2 {
 			margin: 10px 0;
 		}
-		eff-articles::shadow sorted-columns::shadow .article-info {
+		eff-articles::shadow ordered-columns::shadow .article-info {
 			text-transform: uppercase;
 			font-size: 0.8em;
 			color: #666;
 		}
-		eff-articles::shadow sorted-columns::shadow .column {
+		eff-articles::shadow ordered-columns::shadow .column {
 			padding: 4px;
 		}
-		eff-articles::shadow sorted-columns::shadow .column > article:not(:first-of-type) {
+		eff-articles::shadow ordered-columns::shadow .column > article:not(:first-of-type) {
 			border-top: 4px solid #DAE3E7;
 			margin-top: 1em;
 			padding-top: 0.5em;
@@ -48,7 +48,7 @@
 
 	<polymer-element name="eff-articles">
 		<template>
-			<sorted-columns count="{{count}}">
+			<ordered-columns count="{{count}}">
 				<template repeat="{{article in articles}}">
 					<article role="section">
 						<span class="article-info"><time>{{article.date}}</time> | By: {{article.author}}</span>
@@ -58,7 +58,7 @@
 						<p>{{article.body}}</p>
 					</article>
 				</template>
-			</sorted-columns>
+			</ordered-columns>
 		</template>
 		<script>
 		"use strict";

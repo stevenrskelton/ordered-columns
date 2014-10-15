@@ -1,17 +1,17 @@
-&lt;sorted-columns&gt;
+&lt;ordered-columns&gt;
 ================
 
 Polymer Web Component that builds ordered columns (timeline) from arbitrary content.
 
 ## Live Examples and Documentation
 
-> [Articles](http://files.stevenskelton.ca/sorted-columns/examples/eff.html)
+> [Articles](http://files.stevenskelton.ca/ordered-columns/examples/eff.html)
 
 ## Usage
 
 1. Add the library using the Javascript package manager [Bower](http://bower.io/):
 
-	```bower install --save sorted-columns```
+	```bower install --save ordered-columns```
 
 2. Import Web Components' polyfill:
 
@@ -22,7 +22,7 @@ Polymer Web Component that builds ordered columns (timeline) from arbitrary cont
 3. Import Custom Element:
 
 	```html
-	<link rel="import" href="bower_components/sorted-columns/sorted-columns.html">
+	<link rel="import" href="bower_components/ordered-columns/ordered-columns.html">
 	```
 
 4. Start using it!
@@ -30,14 +30,14 @@ Polymer Web Component that builds ordered columns (timeline) from arbitrary cont
 	Set the column count, and add content:
 
 	```html
-	<sorted-columns count="5">
+	<ordered-columns count="5">
 		<!-- Any number of <section> or elements with role="section" -->
-	</sorted-columns>
+	</ordered-columns>
 	```
 
 ## History
 
-For detailed changelog, check [Releases](https://github.com/stevenrskelton/sorted-columns/releases).
+For detailed changelog, check [Releases](https://github.com/stevenrskelton/ordered-columns/releases).
 
 ## License
 [MIT License](http://opensource.org/licenses/MIT) © Steven Skelton
