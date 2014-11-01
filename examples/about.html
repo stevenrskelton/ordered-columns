@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ordered Columns using Polymer Web Components</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script src="../../platform/platform.js" debug log="bind,ready,events"></script>
+	<link rel="import" href="../ordered-columns.html">
+	<link rel="import" href="project-docs.html">
+	<link rel="import" href="../../prism-js/prism-js.html">
+	<style shim-shadowdom>
+		article,
+		ordered-columns::shadow article {
+			text-align:center;
+			border:3px solid #DC143C;
+			border-radius:5px;
+			margin: 2px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		ordered-columns {
+			margin: 20px auto;
+			display: block;
+			width:721px;
+			border:2px solid #333;
+		}
+		#csscolumns {
+			margin-right: auto;
+			margin-left: auto;
+			width:721px;
+			-moz-columns: 3;
+			-webkit-columns: 3;
+			columns: 3;
+			-moz-column-gap: 0;
+			-webkit-column-gap: 0;
+			column-gap: 0;
+			border:2px solid #333;
+		}
+	</style>
+</head>
+<body unresolved is="project-docs">
+
+	<h1>About: Column Support in HTML</h1>
+
+	<h2>Columns using CSS3</h2>
+
+	<p>
+		CSS3 introduced a new <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/columns" target="_blank"><code>columns</code></a> style to automatically create columns.
+	</p>
+
+<prism-js language="markup">&lt;div style="column-count:3"&gt;
+	&lt;!--Any number of regular DOM elements--&gt;
+	&lt;article&gt;Element 1&lt;/article&gt;
+	&lt;article&gt;Element 2&lt;/article&gt;
+	&lt;article&gt;Element 3&lt;/article&gt;
+	&lt;article&gt;Element 4&lt;/article&gt;
+	&lt;article&gt;Element 5&lt;/article&gt;
+	&lt;article&gt;Element 6&lt;/article&gt;
+	&lt;article&gt;Element 7&lt;/article&gt;
+&lt;/div&gt;</prism-js>
+
+	<p>
+		However, CSS columns follow a simple fill order based on the order of elements in the DOM, forcing a left-to-right flow, rather than a vertical flow.
+	</p>
+
+	<div id="csscolumns">
+		<article style="line-height:120px">
+			Element 1
+		</article>
+		<article style="line-height:80px">
+			Element 2
+		</article>
+		<article style="line-height:150px">
+			Element 3
+		</article>
+		<article style="line-height:100px">
+			Element 4
+		</article>
+		<article style="line-height:125px">
+			Element 5
+		</article>
+		<article style="line-height:80px">
+			Element 6
+		</article>
+		<article style="line-height:86px">
+			Element 7
+		</article>
+	</div>
+
+	<h2>Columns using <code>&lt;ordered-columns&gt;</code></h2>
+
+	<p>
+		All elements inlined into a <code>&lt;ordered-columns&gt;</code> web component are automatically reordered
+		in the DOM to fill columns vertically. This is similiar to how rows are filled into a table, but with no gaps between rows, and even multiple elements per row.
+	</p>
+
+	<p>
+		This creates a more vertical representation of data, so that earlier elements are always positions closer to the top of the page than older elements.<br>
+		This approach is common for timelines or news feeds.
+	</p>
+
+<prism-js language="markup">&lt;ordered-columns count="3"&gt;
+	&lt;!--Any number of regular DOM elements--&gt;
+	&lt;article&gt;Element 1&lt;/article&gt;
+	&lt;article&gt;Element 2&lt;/article&gt;
+	&lt;article&gt;Element 3&lt;/article&gt;
+	&lt;article&gt;Element 4&lt;/article&gt;
+	&lt;article&gt;Element 5&lt;/article&gt;
+	&lt;article&gt;Element 6&lt;/article&gt;
+	&lt;article&gt;Element 7&lt;/article&gt;
+&lt;/ordered-columns&gt;</prism-js>
+
+	<p>
+		While it is possible to manually order DOM elements to achieve a vertical flow, it can only be
+		done when the render size of the content is static or known during page creation.<br>
+		Dynamic content, or varying the number or width of columns at runtime (say based on screen resolution) will require DOM element reordering.
+	</p>
+
+	Notice that content rendered using 3 columns:
+
+	<ordered-columns count="3">
+		<article style="line-height:120px">
+			Element 1
+		</article>
+		<article style="line-height:80px">
+			Element 2
+		</article>
+		<article style="line-height:150px">
+			Element 3
+		</article>
+		<article style="line-height:100px">
+			Element 4
+		</article>
+		<article style="line-height:125px">
+			Element 5
+		</article>
+		<article style="line-height:80px">
+			Element 6
+		</article>
+		<article style="line-height:86px">
+			Element 7
+		</article>
+	</ordered-columns>
+
+	Will have a different order than when rendered using only 2 columns:
+
+	<ordered-columns count="2">
+		<article style="line-height:120px">
+			Element 1
+		</article>
+		<article style="line-height:80px">
+			Element 2
+		</article>
+		<article style="line-height:150px">
+			Element 3
+		</article>
+		<article style="line-height:100px">
+			Element 4
+		</article>
+		<article style="line-height:125px">
+			Element 5
+		</article>
+		<article style="line-height:80px">
+			Element 6
+		</article>
+		<article style="line-height:86px">
+			Element 7
+		</article>
+	</ordered-columns>
+
+</body>
+</html>

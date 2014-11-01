@@ -2,6 +2,17 @@
 ================
 
 Polymer Web Component that builds ordered columns (timeline) from arbitrary content.
+Unlike CSS columns, content is always ordered so that earlier content is closer to the top of the page than later content.
+
+## Automatic Element Ordering
+
+### 3 Columns
+
+![3 Columns](https://raw.githubusercontent.com/stevenrskelton/ordered-columns/master/examples/3columns.png "3 Columns")
+
+### 2 Columns
+
+![2 Columns](https://raw.githubusercontent.com/stevenrskelton/ordered-columns/master/examples/3columns.png "2 Columns")
 
 ## Live Examples and Documentation
 
@@ -31,7 +42,7 @@ Polymer Web Component that builds ordered columns (timeline) from arbitrary cont
 
 	```html
 	<ordered-columns count="5">
-		<!-- Any number of <section> or elements with role="section" -->
+		<!-- Any number of <article> or elements with role="article" -->
 	</ordered-columns>
 	```
 
