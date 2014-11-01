@@ -1,8 +1,10 @@
 &lt;ordered-columns&gt;
 ================
 
-Polymer Web Component that builds ordered columns (timeline) from arbitrary content.
-Unlike CSS columns, content is always ordered so that earlier content is closer to the top of the page than later content.
+Polymer Web Component that builds vertically ordered columns (timelines) from arbitrary DOM content.
+Unlike CSS columns, newer content is always rendered closer to the top of the page than later content.
+
+Both the number of columns and column widths can be changed dynamically using Javascript or window resize events, ensuring elements are always rendered in the correct vertical order.
 
 ## Automatic Element Ordering
 
@@ -12,11 +14,13 @@ Unlike CSS columns, content is always ordered so that earlier content is closer 
 
 ### 2 Columns
 
-![2 Columns](https://raw.githubusercontent.com/stevenrskelton/ordered-columns/master/examples/3columns.png "2 Columns")
+![2 Columns](https://raw.githubusercontent.com/stevenrskelton/ordered-columns/master/examples/2columns.png "2 Columns")
 
 ## Live Examples and Documentation
 
-> [Articles](http://files.stevenskelton.ca/ordered-columns/examples/eff.html)
+> [EFF News Articles](http://files.stevenskelton.ca/ordered-columns/examples/eff.html)
+
+> [NASA Wikipedia with Images](http://files.stevenskelton.ca/ordered-columns/examples/nasa.html)
 
 ## Usage
 

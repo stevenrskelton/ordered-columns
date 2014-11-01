@@ -2,7 +2,7 @@
   "name": "ordered-columns",
   "version": "0.0.1",
   "homepage": "https://github.com/stevenrskelton/ordered-columns",
-  "description": "Polymer Web Component that builds ordered columns (timeline) from arbitrary content.",
+  "description": "Polymer Web Component that builds vertically ordered columns (timelines) from arbitrary DOM content",
   "main": "ordered-columns.html",
   "authors": [
     "Steven Skelton"
