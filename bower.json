@@ -24,6 +24,7 @@
     "html",
     "ordered",
     "sorted",
+    "vertical",
     "chronological"
   ],
   "dependencies": {
