@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ordered Columns using Polymer Web Components</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script src="../../platform/platform.js" debug log="bind,ready,events"></script>
+	<link rel="import" href="../ordered-columns.html">
+	<link rel="import" href="project-docs.html">
+	<link rel="import" href="../../prism-js/prism-js.html">
+	<style shim-shadowdom>
+		article,
+		ordered-columns /deep/ article {
+			text-align:center;
+			border:3px solid #DC143C;
+			border-radius:5px;
+			margin: 2px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		ordered-columns:not(.article-style-inner) {
+			width:721px;
+		}
+		ordered-columns,
+		ordered-columns::shadow ordered-columns {
+			border:2px solid #333;
+		}
+		.first-last::shadow .column:first-of-type,
+		.article-colour::shadow .column article:first-of-type {
+			 background-color: LightCoral;
+		}
+		.first-last::shadow .column:nth-of-type(2),
+		.article-colour::shadow .column article:nth-of-type(2) {
+			 background-color: Coral;
+		}
+		.first-last::shadow .column:last-of-type,
+		.article-colour::shadow .column article:last-of-type {
+			 background-color: Moccasin;
+		}
+		.article-style {
+			background-color: #e3ca98;
+		}
+		.article-style::shadow > table > tbody > tr > td > article {
+			margin: 10px;
+			padding: 10px;
+			border:10px solid #ffef83;
+			background-color: #ace2ac;
+			border-radius: 0;
+		}
+		.article-style::shadow > table > tbody > tr > td > [role="article"] {
+			margin: 20px;
+		}
+		.article-style::shadow > table > tbody > tr > td > article > div {
+			background-color: #b3e5ff;
+		}
+		.article-style::shadow > table > tbody > tr > td > article > div:hover {
+			opacity: 0.5;
+		}
+	</style>
+</head>
+<body unresolved is="project-docs">
+
+	<h1>CSS Styling</h1>
+
+	<h2>CSS Classes</h2>
+
+	<p>
+		For convenience, there is a <code>column</code> CSS class to reference columns.  To reference a particular column, use the <code>nth-of-type</code> selector.
+	</p>
+
+	<table class="docs">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Element Types</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>column</code></td>
+				<td><code>td</code></td>
+				<td>Column of <em>articles</em></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h2>Column Styling</h2>
+
+	<p>
+		Some simple styles can be applied to <code>column</code>s, but beware that any style that affects size will likely break the layout.<br>
+		It is recommended to style the <code>article</code> elements directly.
+	</p>
+
+	<prism-js language="css">.column:first-of-type {
+	background-color: LightCoral;
+}
+.column:nth-of-type(2) {
+	background-color: Coral;
+}
+.column:last-of-type {
+	background-color: Moccasin;
+}</prism-js>
+
+	<ordered-columns count="3" class="first-last">
+		<article style="line-height:120px">
+			Element 1
+		</article>
+		<article style="line-height:80px">
+			Element 2
+		</article>
+		<article style="line-height:150px">
+			Element 3
+		</article>
+		<article style="line-height:100px">
+			Element 4
+		</article>
+		<article style="line-height:125px">
+			Element 5
+		</article>
+		<article style="line-height:80px">
+			Element 6
+		</article>
+		<article style="line-height:86px">
+			Element 7
+		</article>
+	</ordered-columns>
+
+	<h2>Article Styling</h2>
+
+	<p>
+		Articles (whether defined as <code>article</code> nodes or using <code>role="article"</code> can also be referenced using the <code>nth-of-type</code> CSS selector.
+	</p>
+	
+	<prism-js language="css">.column article:first-of-type {
+	background-color: LightCoral;
+}
+.column article:nth-of-type(2) {
+	background-color: Coral;
+}
+.column article::last-of-type {
+	background-color: Moccasin;
+}</prism-js>
+		
+	<ordered-columns count="3" class="article-colour">
+		<article style="line-height:120px">
+			Element 1
+		</article>
+		<article style="line-height:80px">
+			Element 2
+		</article>
+		<article style="line-height:150px">
+			Element 3
+		</article>
+		<article style="line-height:100px">
+			Element 4
+		</article>
+		<article style="line-height:125px">
+			Element 5
+		</article>
+		<article style="line-height:80px">
+			Element 6
+		</article>
+		<article style="line-height:86px">
+			Element 7
+		</article>
+	</ordered-columns>
+
+	<p>
+		And of course, each <code>article</code> can be fully styled using CSS; including <code>margin</code>, <code>padding</code>, <code>border</code>, and <code>:hover</code>.<br>
+		Styling even works when articles are more complex DOM elements, such as an <code>img</code> or another web componet (like an <code>ordered-columns</code>!).
+	</p>
+
+	<ordered-columns count="3" class="article-style">
+		<article style="line-height:120px">
+			<div>Element 1</div>
+		</article>
+		<article style="line-height:80px">
+			<div>Element 2</div>
+		</article>
+		<ordered-columns count="3" role="article" class="article-style-inner" 
+		style="display:block;height:170px;margin:10px">
+			<article style="line-height:60px">
+				1
+			</article>
+			<article style="line-height:40px">
+				2
+			</article>
+			<article style="line-height:75px">
+				3
+			</article>
+			<article style="line-height:50px">
+				4
+			</article>
+			<article style="line-height:62px">
+				5
+			</article>
+			<article style="line-height:40px">
+				6
+			</article>
+			<article style="line-height:43px">
+				7
+			</article>
+		</ordered-columns>
+		<article style="line-height:100px">
+			<div>Element 4</div>
+		</article>
+		<a href="https://www.eff.org/" target="_blank"
+			role="article"
+			title="Electronic Frontier Foundation"
+			style="text-align: center;display: block;"
+		>
+			<img src="eff-logo-plain-rgb.png" style="height:125px">
+		</a>
+		<article style="line-height:80px">
+			<div>Element 6</div>
+		</article>
+		<article style="line-height:86px">
+			<div>Element 7</div>
+		</article>
+	</ordered-columns>
+</body>
+</html>

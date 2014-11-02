@@ -2,7 +2,7 @@
 ================
 
 Polymer Web Component that builds vertically ordered columns (timelines) from arbitrary DOM content.
-Unlike CSS columns, newer content is always rendered closer to the top of the page than later content.
+Unlike CSS columns, earlier content is always rendered closer to the top of the page than later content.
 
 Both the number of columns and column widths can be changed dynamically using Javascript or window resize events, ensuring elements are always rendered in the correct vertical order.
 
@@ -16,7 +16,13 @@ Both the number of columns and column widths can be changed dynamically using Ja
 
 ![2 Columns](https://raw.githubusercontent.com/stevenrskelton/ordered-columns/master/examples/2columns.png "2 Columns")
 
-## Live Examples and Documentation
+## Documentation
+
+> [Features](http://files.stevenskelton.ca/ordered-columns/examples/features.html)
+
+> [CSS Styles](http://files.stevenskelton.ca/ordered-columns/examples/css.html)
+
+## Live Examples
 
 > [EFF News Articles](http://files.stevenskelton.ca/ordered-columns/examples/eff.html)
 
