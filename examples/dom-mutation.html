@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ordered Columns using Polymer Web Components</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script src="../../platform/platform.js"></script>
+	<link rel="import" href="../ordered-columns.html">
+	<link rel="import" href="project-docs.html">
+	<link rel="import" href="../../prism-js/prism-js.html">
+	<style shim-shadowdom>
+		.user-action {
+			border: 1px solid #666;
+			background-color: #E6E6FA;
+			display: inline-block;
+			padding: 10px;
+		}
+		ordered-columns::shadow article {
+			border: 1px solid #666;
+			background-color: Thistle;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body unresolved is="project-docs">
+
+	<h1>DOM Mutations</h1>
+
+	<h2>Observed Content</h2>
+
+	All content within an <code>ordered-columns</code> is observed for changes, so when nodes are added they are automatically added to the shortest column.
+
+<prism-js language="markup">&lt;ordered-columns&gt;
+	&lt;-- observed for additions --&gt;
+&lt;/ordered-columns&gt;</prism-js>
+
+	All attributes, such as <code>count</code> are also observed for change, so they update immediately.
+
+	<p>
+
+	<polymer-element name="mdn-array" style="display:block;">
+		<template>
+			<style>
+				.user-action {
+					border: 1px solid #666;
+					background-color: #E6E6FA;
+					display: inline-block;
+					padding: 10px;
+				}
+			</style>
+			<div class="user-action">
+				Select <code>Array.prototype</code> method to add:
+				<select value="{{selected}}">
+					<template repeat="{{arrayPrototype}}">
+						<option>{{name}}</option>
+					</template>
+				</select>
+				<button on-click="{{add}}">Add</button>
+			</div>
+			<div class="user-action">
+				Number of Columns:
+				<input type="number" style="text-align:right;width:35px;" min="0" value="{{count}}" on-change="{{changeCount}}">
+			</div>
+			<div class="user-action">
+				Redraw All on Resize:
+				<input type="checkbox" on-change="{{changeRedraw}}">
+			</div>
+		</template>
+		<script>
+		"use strict";
+		Polymer({
+			index: 0,
+			count: 3,
+			selected: 'length',
+			arrayPrototype: [
+				{name: 'length', summary: 'The length property represents an unsigned, 32-bit integer that specifies the number of elements in an array.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length' },
+				{name: 'isArray', summary: 'The splice() method changes the content of an array, adding new elements while removing old elements.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice' },
+				{name: 'concat', summary: 'The concat() method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat' },
+				{name: 'every', summary: 'The every() method tests whether all elements in the array pass the test implemented by the provided function.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every' },
+				{name: 'filter', summary: 'The filter() method creates a new array with all elements that pass the test implemented by the provided function.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter' },
+				{name: 'forEach', summary: 'The forEach() method executes a provided function once per array element.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach' },
+				{name: 'indexOf', summary: 'The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf' },
+				{name: 'join', summary: 'The join() method joins all elements of an array into a string.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join' },
+				{name: 'lastIndexOf', summary: 'The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf' },
+				{name: 'map', summary: 'The map() method creates a new array with the results of calling a provided function on every element in this array.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map' },
+				{name: 'pop', summary: 'The pop() method removes the last element from an array and returns that element.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop' },
+				{name: 'push', summary: 'The push() method adds one or more elements to the end of an array and returns the new length of the array.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push' },
+				{name: 'reduce', summary: 'The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) has to reduce it to a single value.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce' },
+				{name: 'reduceRight', summary: 'The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight' },
+				{name: 'reverse', summary: 'The reverse() method reverses an array in place. The first array element becomes the last and the last becomes the first.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse' },
+				{name: 'shift', summary: 'The shift() method removes the first element from an array and returns that element. This method changes the length of the array.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift' },
+				{name: 'slice', summary: 'The slice() method returns a shallow copy of a portion of an array into a new array object.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice' },
+				{name: 'some', summary: 'The some() method tests whether some element in the array passes the test implemented by the provided function.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some' },
+				{name: 'sort', summary: 'The sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort' },
+				{name: 'splice', summary: 'The splice() method changes the content of an array, adding new elements while removing old elements.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice' },
+				{name: 'toLocaleString', summary: 'The toLocaleString() method returns a string representing the elements of the array. The elements are converted to Strings using their toLocaleString methods and these Strings are separated by a locale-specific String (such as a comma “,”).', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString' },
+				{name: 'toString', summary: 'The toString() method returns a string representing the specified array and its elements.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toString' },
+				{name: 'unshift', summary: 'The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift' }
+			],
+			add: function(){
+				var selected = this.selected;
+				var item = this.arrayPrototype.filter(function(e){ return e.name === selected; })[0];
+				var oc = document.getElementById('test');
+				var t = document.getElementById('article');
+				t.content.querySelector('em').innerHTML = this.index++;
+				t.content.querySelector('a').href = item.link;
+				t.content.querySelector('a').innerHTML = item.name;
+				t.content.querySelector('span').innerHTML = item.summary;
+				var clone = document.importNode(t.content, true);
+				oc.appendChild(clone);
+				//advance
+				this.selected = this.arrayPrototype[(this.arrayPrototype.indexOf(item) + 1) % this.arrayPrototype.length].name;
+			},
+			changeCount: function(){
+				var oc = document.getElementById('test');
+				oc.count = this.count;
+			},
+			changeRedraw: function(e){
+				var oc = document.getElementById('test');
+				oc.redraw = e.target.checked;
+			}
+		});
+		</script>
+	</polymer-element>
+
+	<template id="article">
+		<article>
+			[<em>{{id}}</em>] <strong><a href="{{link}}" target="_blank">{{name}}</a></strong>: <span>{{summary}}</span>
+		</article>
+	</template>
+
+	<mdn-array></mdn-array>
+
+	<hr>
+
+	<ordered-columns id="test" count="3" style="width:100%"></ordered-columns>
+
+</body>
+</html>

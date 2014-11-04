@@ -6,7 +6,7 @@
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="ordered-columns" attributes="count">
+<polymer-element name="ordered-columns" attributes="count redraw">
 	<template>
 		<style>
 			:host {
@@ -27,47 +27,68 @@
 				></td></template>
 			</tr>
 		</table>
-		<div style="width:{{columnWidths[0]}};display:none">
+		<div style="width:{{standardWidth}};display:none">
 			<content id="hiddenDiv" select='article,[role="article"]'></content>
 		</div>
 	</template>
 	<script>
 	"use strict";
 	Polymer({
+		redraw: false,
 		ready: function(){
 			var self = this;
-			self.columnWidths = self.getColumnWidths();
-			this.async(function() {
-				self.load();
-			});
+			this.setColumnWidths();
+			this.load();
 			window.addEventListener('resize', function(e) {
-				self.refresh.call(self);
+				if(self.redraw) self.refresh.call(self);
+				else self.setStandardWidth.call(self);
 			});
+			this.onMutation(this, this.append);
 		},
 		count: 1,
 		observe: {
 			count: 'refresh'
 		},
+		append: function(observer, mutations){
+			var self = this;
+			mutations.forEach(function(m) {
+				if(m.type === 'childList'){
+					var newArticles = [].filter.call(m.addedNodes, function(element){
+						return element.nodeName === 'ARTICLE' || (element.getAttribute && element.getAttribute('role') === 'article');
+					});
+					newArticles.forEach(function(element){
+						self.items.push(element);
+					});
+					self.async(function() {
+						self.moveItems(newArticles);
+					});
+				}
+			});
+			this.onMutation(this, this.append);
+		},
 		refresh: function(){
 			var self = this;
-			self.columnWidths = self.getColumnWidths.call(self);
+			this.setColumnWidths();
 			this.async(function() {
 				var hiddenDiv = self.$.hiddenDiv;
-				[].forEach.call(self.items, function(element,i){
+				self.items.forEach(function(element,i){
 					hiddenDiv.appendChild(element);
 				});
-				var columns = self.shadowRoot.querySelectorAll('.column');
-				self.moveItems(self.items, columns);
+				self.moveItems(self.items);
 			});
 		},
 		load: function(){
-			this.items = this.$.hiddenDiv.getDistributedNodes();
+			var items = [];
+			[].forEach.call(this.$.hiddenDiv.getDistributedNodes(), function(o){ items.push(o)});
+			this.items = items;
 			var self = this;
-			var columns = this.shadowRoot.querySelectorAll('.column');
-			this.moveItems(this.items, columns);
+			this.async(function() {
+				self.moveItems(items);
+			});
 		},
-		moveItems: function(items, columns){
-			[].forEach.call(items, function(element,i){
+		moveItems: function(items){
+			var columns = this.shadowRoot.querySelectorAll('.column');
+			items.forEach(function(element,i){
 				var column = columns[0];
 				[].forEach.call(columns, function(c){
 					if(c.clientHeight < column.clientHeight) column = c;
@@ -75,20 +96,23 @@
 				column.appendChild(element);
 			});
 		},
-		getColumnWidths: function(){
+		setColumnWidths: function(){
 			var arr = [];
-			if(this.clientWidth === 0){
-				var min = Math.floor(100 / this.count);
-				for(var i=0;i<this.count-1;i++) arr.push(min + '%');
-				arr.push((100 - min * (this.count-1)) + '%');
-			}else{
-				var min = Math.floor(this.clientWidth / this.count);
-				for(var i=0;i<this.count-1;i++) arr.push(min + 'px');
-				arr.push((this.clientWidth - min * (this.count-1)) + 'px');
-			}
-			return arr;
+			var count = Math.max(this.count,1);
+			var min = Math.floor(100 / count);
+			for(var i=0;i<count-1;i++) arr.push(min + '%');
+			arr.push((100 - min * (count-1)) + '%');
+			this.columnWidths = arr;
+			this.setStandardWidth();
+		},
+		setStandardWidth: function(){
+			var columns = this.shadowRoot.querySelectorAll('.column');
+			if(columns.length > 0) this.standardWidth = columns[0].clientWidth + 'px';
+			else if(this.clientWidth) this.standardWidth = (this.clientWidth / Math.max(this.count,1)) + 'px';
+			else this.standardWidth = (100 / Math.max(this.count,1)) + '%';
 		},
 		columnWidths: null,
+		standardWidth: null,
 		items: null
 	});
 	</script>

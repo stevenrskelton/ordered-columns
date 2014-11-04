@@ -18,13 +18,15 @@ Both the number of columns and column widths can be changed dynamically using Ja
 
 ## Documentation
 
-> [Features](http://files.stevenskelton.ca/ordered-columns/examples/features.html)
+> [About CSS Columns](http://files.stevenskelton.ca/ordered-columns/examples/about.html)
+
+> [DOM Mutations](http://files.stevenskelton.ca/ordered-columns/examples/dom-mutations.html)
+
+> [Template Repeat](http://files.stevenskelton.ca/ordered-columns/examples/template-repeat.html)
 
 > [CSS Styles](http://files.stevenskelton.ca/ordered-columns/examples/css.html)
 
 ## Live Examples
-
-> [EFF News Articles](http://files.stevenskelton.ca/ordered-columns/examples/eff.html)
 
 > [NASA Wikipedia with Images](http://files.stevenskelton.ca/ordered-columns/examples/nasa.html)
 
