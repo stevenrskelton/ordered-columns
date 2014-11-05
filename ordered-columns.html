@@ -6,11 +6,11 @@
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="ordered-columns" attributes="count redraw">
+<polymer-element name="ordered-columns" attributes="count redraw columnWidth">
 	<template>
 		<style>
 			:host {
-				display: inline-block;
+				display: block;
 			}
 			.column {
 				box-sizing: border-box;
@@ -27,21 +27,20 @@
 				></td></template>
 			</tr>
 		</table>
-		<div style="width:{{standardWidth}};display:none">
+		<div style="display:none">
 			<content id="hiddenDiv" select='article,[role="article"]'></content>
 		</div>
 	</template>
 	<script>
 	"use strict";
 	Polymer({
+		columnWidth: null,
 		redraw: false,
 		ready: function(){
 			var self = this;
-			this.setColumnWidths();
 			this.load();
 			window.addEventListener('resize', function(e) {
-				if(self.redraw) self.refresh.call(self);
-				else self.setStandardWidth.call(self);
+				if(self.redraw) self.refresh();
 			});
 			this.onMutation(this, this.append);
 		},
@@ -67,6 +66,7 @@
 			this.onMutation(this, this.append);
 		},
 		refresh: function(){
+		console.log('refresh');
 			var self = this;
 			this.setColumnWidths();
 			this.async(function() {
@@ -78,15 +78,18 @@
 			});
 		},
 		load: function(){
-			var items = [];
-			[].forEach.call(this.$.hiddenDiv.getDistributedNodes(), function(o){ items.push(o)});
-			this.items = items;
 			var self = this;
+			this.setColumnWidths();
 			this.async(function() {
+				var items = [];
+				[].forEach.call(self.$.hiddenDiv.getDistributedNodes(), function(o){ items.push(o)});
+				self.items = items;
 				self.moveItems(items);
 			});
 		},
 		moveItems: function(items){
+		console.log('moveItems');
+		console.log(this.clientWidth);
 			var columns = this.shadowRoot.querySelectorAll('.column');
 			items.forEach(function(element,i){
 				var column = columns[0];
@@ -97,22 +100,24 @@
 			});
 		},
 		setColumnWidths: function(){
+		console.log('setColumnWidths');
 			var arr = [];
-			var count = Math.max(this.count,1);
-			var min = Math.floor(100 / count);
-			for(var i=0;i<count-1;i++) arr.push(min + '%');
-			arr.push((100 - min * (count-1)) + '%');
+			var columnWidth = +this.columnWidth;
+			if(columnWidth > 0){
+				var width = this.clientWidth;
+				var num = Math.floor(width / columnWidth);
+				if(num === 0) num = 1;
+				this.count = num;
+				for(var i=0;i<num;i++) arr.push(columnWidth + 'px');
+			}else{
+				var count = Math.max(this.count,1);
+				var min = Math.floor(100 / count);
+				for(var i=0;i<count-1;i++) arr.push(min + '%');
+				arr.push((100 - min * (count-1)) + '%');
+			}
 			this.columnWidths = arr;
-			this.setStandardWidth();
-		},
-		setStandardWidth: function(){
-			var columns = this.shadowRoot.querySelectorAll('.column');
-			if(columns.length > 0) this.standardWidth = columns[0].clientWidth + 'px';
-			else if(this.clientWidth) this.standardWidth = (this.clientWidth / Math.max(this.count,1)) + 'px';
-			else this.standardWidth = (100 / Math.max(this.count,1)) + '%';
 		},
 		columnWidths: null,
-		standardWidth: null,
 		items: null
 	});
 	</script>

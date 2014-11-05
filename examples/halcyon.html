@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ordered Columns using Polymer Web Components</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script src="../../platform/platform.js"></script>
+	<link rel="import" href="../ordered-columns.html">
+	<link rel="import" href="project-docs.html">
+	<link rel="import" href="../../prism-js/prism-js.html">
+	<style shim-shadowdom>
+		#main #mainContainer {
+			background-image: url('http://static.tumblr.com/3nghtcy/cRImezufo/low_contrast_linen.png');
+			background-color: #343640;
+			background-size: auto auto !important;
+			background-attachment: scroll !important;
+		}
+	</style>
+</head>
+<body unresolved is="project-docs">
+
+	<h1>Halcyon Theme</h1>
+
+	<polymer-element name="halcyon-article" attributes="postType postTypeIcon postDate likes" noscript>
+		<template>
+			<link rel="stylesheet" href="halcyon-style.css" type="text/css"></link>
+			<style shim-shadowdom>
+				#search-title.box, #likes #likes .like_post, article.post .post-comments, article.post .tumblr-notes, article.post .post-content {
+					color: #1A1C21;
+				}
+				.post .post-content {
+					border-radius: 6px 6px 0px 0px;
+					padding-bottom: 7px;
+					background-color: #FFF;
+				}
+				#search-title.box, #likes #likes .like_post, article.post .post-comments, article.post .tumblr-notes, article.post .post-content {
+					color: #1A1C21;
+				}
+				#sidebar a.portrait, #sidebar #blog-description, #sidebar #navigation > li, #sidebar #social-links, #sidebar #twitter, #sidebar #likes.sidebar-block, #sidebar #flickr, #sidebar #instagram, #sidebar #who-i-follow, #sidebar #contributors, #moar-posts, #back-to-top, #pagination > a, #pagination > div, .post-meta .cell, .post-meta .share-container .close {
+					background-color: rgba(0, 0, 0, 0.5);
+				}
+				#pagination, #pagination a, #back-to-top, #moar-posts, #moar-posts.no-more:hover span.load, article.post .post-meta .cell, article.post .post-meta .cell a, article.post .post-meta .cell a:link, article.post .post-meta .cell a:visited, article.post .post-meta .cell span.share-button, #sidebar .sidebar-block input, #sidebar .sidebar-block a, #sidebar .sidebar-block span#search, #sidebar .sidebar-block span#pages, #sidebar .sidebar-block a, #sidebar .sidebar-block a:link, #sidebar .sidebar-block a:visited {
+					color: #91949D;
+				}
+				#sidebar #twitter.sidebar-block .tweet .tweet-content a, #sidebar #twitter.sidebar-block .tweet .tweet-content a:link, #sidebar #twitter.sidebar-block .tweet .tweet-content a:visited, #sidebar #twitter.sidebar-block .tweet .tweet-content a:hover, #sidebar #shown a, #sidebar #shown a:link, #sidebar #shown a:visited, #likes #likes .like_post a, #likes #likes .like_post a:link, #likes #likes .like_post a:visited, article.post a, article.post a:link {
+					color: #F64C3F;
+				}
+				#sidebar ul#navigation > li:hover, .post-meta .cell:hover, .post-meta .share-container .close:hover {
+					background-color: #F64C3F;
+				}
+				#pagination a:hover, #back-to-top:hover, #moar-posts:hover span.load, article.post .post-meta .cell:hover a, article.post .post-meta .cell:hover span.share-button, #sidebar .sidebar-block a:hover, #sidebar .sidebar-block li:hover input, #sidebar .sidebar-block #navigation > li:hover > a, #sidebar .sidebar-block #navigation > li:hover > span#search, #sidebar .sidebar-block #navigation > li:hover > span#pages {
+					color: #FFF;
+				}
+				article.post .post-type-icon-wrap .post-type-icon:link, article.post .post-type-icon-wrap .post-type-icon:hover, article.post .post-type-icon-wrap .post-type-icon:visited {
+					background-color: #91949D;
+					color: #1A1C20;
+				}
+				.clearfix:after {
+					clear: both;
+				}
+				.clearfix:before, .clearfix:after {
+					content: " ";
+					display: table;
+				}
+				article {
+					margin-right: 30px;
+					margin-bottom: 30px;
+				}
+			</style>
+			<article style="visibility: visible; opacity: 1;" class="box post type-{{postType}} small masonry-brick">
+				<div class="post-content clearfix">
+					<content></content>
+				</div>
+				<div class="post-type-icon-wrap">
+					<div class="border">
+						<a class="post-type-icon" href="#"><span class="icon">{{postTypeIcon}}</span></a>
+					</div>
+				</div>
+				<div class="post-meta">
+					<div class="cell clearfix timestamp">
+						<a href="#"><span class="icon">B</span><span class="text">{{postDate}}</span></a>
+					</div>
+					<div class="spacer">
+						<div class="spacer"></div>
+					</div>
+					<div style="text-indent: 1px;" class="cell clearfix comments facebook ">
+						<a href="#"><span class="icon">Y</span><span class="text"></span></a><a class="comment-count" href="#">Comments</a>
+					</div>
+					<div class="spacer comments">
+						<div class="spacer"></div>
+					</div>
+					<div class="cell clearfix notes">
+						<a href="#"><span class="icon">p</span><span class="text">{{likes}}</span></a>
+					</div>
+					<div class="spacer">
+						<div class="spacer"></div>
+					</div>
+					<div class="cell clearfix pxu-share">
+						<span class="share-button"><span class="icon">r</span><span class="text">share</span></span>
+					</div>
+					<div class="share-container">
+						<div class="share-cell close">
+							<span class="icon">A</span>
+						</div>
+					</div>
+				</div>
+			</article>
+		</template>
+	</polymer-element>
+
+	<ordered-columns columnWidth="530">
+
+		<halcyon-article role="article" postType="quote" postTypeIcon="9" postDate="Today" likes="4k">
+			<div class="quote">“Isn't there already a Cascading grid layout library called Masonry”?</div>
+			<div class="source clearfix rte">—<span class="source-text"></span></div>
+			<div class="caption">
+				<p>
+					<em>Yes.</em>
+				</p>
+				<p>
+					But <code>&lt;ordered-columns&gt;</code> was written from the ground up to be a light-weight web component.
+				</p>
+			</div>
+		</halcyon-article>
+
+		<halcyon-article role="article" postType="link" postTypeIcon="0" postDate="Yesterday" likes="6863">
+			<h1 class="title">
+				<a class="link" href="http://masonry.desandro.com/" target="_blank">Masonry<span class="icon">f</span></a>
+			</h1>
+			<div class="caption clearfix rte">
+				<p>
+					<h3>What is Masonry?</h3>
+					Masonry is a JavaScript grid layout library. It works by placing elements in optimal position based on available vertical space, sort of like a mason fitting stones in a wall. You’ve probably seen it in use all over the Internet.
+				</p>
+			</div>
+		</halcyon-article>
+
+		<halcyon-article role="article" postType="link" postTypeIcon="0" postDate="November 3, 2014 " likes="56">
+			<h1 class="title">
+				EFF Fights for Common Sense, Again, in DMCA Rulemaking
+			</h1>
+			<div class="caption clearfix rte">
+				<strong>
+					Ridiculous Exemption Process Forces Consumers to Beg for Basic Rights
+				</strong>
+				<p>
+					San Francisco - The Electronic Frontier Foundation (EFF) filed six exemption requests with the U.S. Copyright Office today, part of the elaborate, every-three-year process to right the wrongs put in place by the Section 1201 of the Digital Millennium Copyright Act (DMCA). EFF's requests received crucial assistance from the Organization for Transformative Works, the NYU Technology Law & Policy Clinic, attorney Marcia Hofmann, and former EFF intern Kendra Albert.
+				</p>
+				<p>
+					Two of EFF's requests this year are on behalf of people who need to access the software in cars so they can do basic things like repair, modify, and test the security of their vehicles. Because Section 1201 of the DMCA prohibits unlocking "access controls"—also known as digital rights management (DRM)—on the software, car companies can threaten anyone who needs to get around those restrictions, no matter how legitimate the reason.
+				</p>
+				<p>
+					"The DMCA was supposed to help protect against copyright infringement, but it's been abused to interfere with all kinds of lawful activities that have nothing to do with infringement," said EFF Intellectual Property Director Corynne McSherry. "Software is in all kinds of devices, from cars to coffee-makers to alarm clocks. If that software is locked down by DRM, it's likely that you can't tinker, repair, and re-use those objects without incurring legal risk."
+				</p>
+				<p>
+					EFF's other requests this rulemaking include one for users who want to continue to play "abandoned" video games. For example, some users may need to modify an old video game so it doesn't perform a check with an authentication server that has since been shut down. EFF has also asked the Copyright Office to renew previous exemptions issued for jailbreaking smartphones, and extend them to tablets and other mobile devices—liberating them to run operating systems and applications from any source, not just those approved by the manufacturer. EFF also asked for renewal and partial expansion of the exemptions for remix videos that use excerpts from DVDs, Blu-Ray discs, or downloading services.
+				</p>
+				<p>
+					"These requests highlight some of the ways that Section 1201 of the DMCA has given the Librarian of Congress a veto on innovation and creativity," said EFF Staff Attorney Mitch Stoltz. "We and many other organizations will have to spend the next year begging the Copyright Office to make sure copyright law doesn't stop user choice and creative expression."
+				</p>
+				<p>
+					EFF's exemption requests are part of the regular rulemaking process from the Library of Congress and the Copyright Office. Congress created this system to act as a "safety valve" to mitigate the harms the law has caused to legitimate, non-infringing uses of copyrighted materials. But that safety valve is hugely flawed. The every-three-year procedure is burdensome and confusing, with high hurdles to success. Even if an exemption is granted, supporters still have to come back to get it renewed or expanded, as technology develops.
+				</p>
+				<p>
+					"Technologists and artists should not have to get permission from Washington before they create, learn, and innovate, especially when the window to seek permission only comes once every three years," said EFF Staff Attorney Kit Walsh. "This rulemaking isn't the 'safety valve' we need to defend free speech and innovation from Section 1201. But until the law is fixed, we'll do our part to fight for those rights before the Copyright Office and in the courts."
+				</p>
+				<p>
+					For the full petitions:
+					<a href="https://www.eff.org/cases/2015-dmca-rulemaking" target="_blank">https://www.eff.org/cases/2015-dmca-rulemaking</a>
+				</p>
+				<p class="reblog-source">
+					<span class="icon">H</span> Reblogged from <a href="https://www.eff.org/press/releases/eff-fights-common-sense-again-dmca-rulemaking" target="_blank">EFF.org</a>
+				</p>
+			</div>
+		</halcyon-article>
+
+		<halcyon-article role="article" postType="audio" postTypeIcon="s" postDate="May 2011" likes="78k">
+			<iframe id="ytplayer" type="text/html" width="500" height="280"
+			src="http://www.youtube.com/embed/3F1_04GLrPs" style="border-radius:5px;"
+			frameborder="0"></iframe>
+		</halcyon-article>
+
+		<halcyon-article role="article" postType="photo" postTypeIcon="s" postDate="July 1969" likes="7 Billion">
+			<div class="photo-wrap">
+				<img alt="Buzz Aldrin on the Moon, 1969" class="photo" src="nasa/595px-Buzz_salutes_the_U.S._Flag.jpg" style="width:100%">
+			</div>
+			<div class="caption clearfix rte">
+				<p>
+					<strong>Buzz Aldrin on the Moon, 1969</strong>
+				</p>
+				<p>
+					The first person to stand on the Moon was Neil Armstrong, who was followed by Buzz Aldrin, while Michael Collins orbited above.
+					Five subsequent Apollo missions also landed astronauts on the Moon, the last in December 1972. Throughout these six Apollo spaceflights,
+					twelve men walked on the Moon. These missions returned a wealth of scientific data and 381.7 kilograms (842 lb) of lunar samples.
+					Topics covered by experiments performed included soil mechanics, meteoroids, seismology, heat flow, lunar ranging, magnetic fields, and solar wind.
+					The Moon landing marked the end of the space race and as a gesture, Armstrong mentioned mankind when he stepped down on the Moon.
+				</p>
+				<p class="reblog-source">
+					<span class="icon">H</span> Reblogged from <a href="http://en.wikipedia.org/wiki/NASA" target="_blank">Wikipedia</a>
+				</p>
+			</div>
+		</halcyon-article>
+
+		<halcyon-article role="article" postType="audio" postTypeIcon="2" postDate="1 year ago" likes="76">
+			<div class="album-art-area">
+				<img class="album-art" src="http://38.media.tumblr.com/tumblr_mjtaxxxr0c1rg664ao1_1363535782_cover.jpg">
+				<div class="placeholder">
+					<div class="vinyl">
+						<div class="matrix"></div>
+					</div>
+				</div>
+				<div style="display: block;" class="standard-player-wrap">
+					<div class="standard-player">
+						<span><div class="audio_player"><embed type="application/x-shockwave-flash" src="http://assets.tumblr.com/swf/audio_player.swf?audio_file=https%3A%2F%2Fwww.tumblr.com%2Faudio_file%2Fhalcyon-theme%2F45792206102%2Ftumblr_mjtaxxxr0c1rg664a&amp;color=FFFFFF" quality="best" wmode="opaque" height="27" width="207"></div></span>
+					</div>
+				</div>
+				<div class="custom-player-wrap">
+					<div class="button-wrap">
+						<div class="button"></div>
+					</div>
+					<div class="bar">
+						<div class="buffered"></div>
+						<div class="progress"></div>
+					</div>
+				</div>
+				<div style="display: none;" class="overlay"></div>
+			</div>
+			<div class="song-meta clearfix">
+				<span class="artist">Grizzly Bear</span> - <span class="track">Foreground</span>
+				<div class="album">
+					from <span class="album">Veckatimest</span>
+				</div>
+				<div class="plays">27,167 plays</div>
+			</div>
+			<div class="caption clearfix rte">
+				<p>
+					<a href="http://en.wikipedia.org/wiki/Grizzly_Bear_(band)">Grizzly Bear</a>
+				</p>
+				<p>
+					Grizzly Bear is an American indie rock band from Brooklyn, New York, formed in 2002. The band consists of Edward Droste, Daniel Rossen, Chris Taylor and Christopher Bear.
+				</p>
+				<p class="tumblr-source">
+					Source: <a href="http://glowingmind.tumblr.com/post/45590909195">glowingmind</a>
+				</p>
+			</div>
+		</halcyon-article>
+
+		<halcyon-article role="article" postType="photo" postTypeIcon="s" postDate="35 days" likes="1233">
+			<div class="photo-wrap">
+				<img alt="Michael Chase Michael Chase is a self-taught photographer and fine arts student. He&amp;#8217;s recently been featured on Tumblr&amp;#8217;s spotlight and we really love his work." class="photo" data-highres="http://41.media.tumblr.com/tumblr_mc4176Ii0J1qh4vdzo1_500.jpg" data-width="1280" highres="" src="http://41.media.tumblr.com/tumblr_mc4176Ii0J1qh4vdzo1_500.jpg">
+			</div>
+			<div class="caption clearfix rte">
+				<p>
+					<a href="http://areaofinterest.tumblr.com">Michael Chase</a>
+				</p>
+				<p>
+					Michael Chase is a self-taught photographer and fine arts student. He’s recently been featured on Tumblr’s spotlight and we really love his work.
+				</p>
+				<p class="reblog-source">
+					<span class="icon">H</span> Reblogged from <a href="http://areaofinterest-deactivated20131.tumblr.com/post/33894568972/michael-chase">areaofinterest-deactivated20131</a>
+				</p>
+			</div>
+		</halcyon-article>
+
+
+	</ordered-columns>
+</body>
+</html>

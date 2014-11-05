@@ -30,6 +30,8 @@ Both the number of columns and column widths can be changed dynamically using Ja
 
 > [NASA Wikipedia with Images](http://files.stevenskelton.ca/ordered-columns/examples/nasa.html)
 
+> [Halcyon Theme](http://files.stevenskelton.ca/ordered-columns/examples/halcyon.html)
+
 ## Usage
 
 1. Add the library using the Javascript package manager [Bower](http://bower.io/):
