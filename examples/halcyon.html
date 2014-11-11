@@ -10,7 +10,8 @@
 	<link rel="import" href="project-docs.html">
 	<link rel="import" href="../../prism-js/prism-js.html">
 	<style shim-shadowdom>
-		#main #mainContainer {
+		#main #mainContainer,
+		body /deep/ #headerPanel /deep/ #outerContainer > #mainPanel > #mainContainer {
 			background-image: url('http://static.tumblr.com/3nghtcy/cRImezufo/low_contrast_linen.png');
 			background-color: #343640;
 			background-size: auto auto !important;
@@ -24,7 +25,8 @@
 
 	<polymer-element name="halcyon-article" attributes="postType postTypeIcon postDate likes" noscript>
 		<template>
-			<link rel="stylesheet" href="halcyon-style.css" type="text/css"></link>
+			<link rel="stylesheet" href="halcyon-style.css" type="text/css" shim-shadowdom></link>
+
 			<style shim-shadowdom>
 				#search-title.box, #likes #likes .like_post, article.post .post-comments, article.post .tumblr-notes, article.post .post-content {
 					color: #1A1C21;
@@ -43,7 +45,9 @@
 				#pagination, #pagination a, #back-to-top, #moar-posts, #moar-posts.no-more:hover span.load, article.post .post-meta .cell, article.post .post-meta .cell a, article.post .post-meta .cell a:link, article.post .post-meta .cell a:visited, article.post .post-meta .cell span.share-button, #sidebar .sidebar-block input, #sidebar .sidebar-block a, #sidebar .sidebar-block span#search, #sidebar .sidebar-block span#pages, #sidebar .sidebar-block a, #sidebar .sidebar-block a:link, #sidebar .sidebar-block a:visited {
 					color: #91949D;
 				}
-				#sidebar #twitter.sidebar-block .tweet .tweet-content a, #sidebar #twitter.sidebar-block .tweet .tweet-content a:link, #sidebar #twitter.sidebar-block .tweet .tweet-content a:visited, #sidebar #twitter.sidebar-block .tweet .tweet-content a:hover, #sidebar #shown a, #sidebar #shown a:link, #sidebar #shown a:visited, #likes #likes .like_post a, #likes #likes .like_post a:link, #likes #likes .like_post a:visited, article.post a, article.post a:link {
+				#sidebar #twitter.sidebar-block .tweet .tweet-content a, #sidebar #twitter.sidebar-block .tweet .tweet-content a:link, #sidebar #twitter.sidebar-block .tweet .tweet-content a:visited, #sidebar #twitter.sidebar-block .tweet .tweet-content a:hover, #sidebar #shown a, #sidebar #shown a:link, #sidebar #shown a:visited, #likes #likes .like_post a, #likes #likes .like_post a:link, #likes #likes .like_post a:visited,
+				article.post ::shadow a, article.post ::shadow a:link,
+				article.post ::content a, article.post ::content a:link {
 					color: #F64C3F;
 				}
 				#sidebar ul#navigation > li:hover, .post-meta .cell:hover, .post-meta .share-container .close:hover {
@@ -74,7 +78,7 @@
 				</div>
 				<div class="post-type-icon-wrap">
 					<div class="border">
-						<a class="post-type-icon" href="#"><span class="icon">{{postTypeIcon}}</span></a>
+						<a class="post-type-icon" href="#"><span class="icon" style="font-family:'new_fontregular'">{{postTypeIcon}}</span></a>
 					</div>
 				</div>
 				<div class="post-meta">
@@ -202,67 +206,36 @@
 			</div>
 		</halcyon-article>
 
-		<halcyon-article role="article" postType="audio" postTypeIcon="2" postDate="1 year ago" likes="76">
-			<div class="album-art-area">
-				<img class="album-art" src="http://38.media.tumblr.com/tumblr_mjtaxxxr0c1rg664ao1_1363535782_cover.jpg">
-				<div class="placeholder">
-					<div class="vinyl">
-						<div class="matrix"></div>
-					</div>
-				</div>
-				<div style="display: block;" class="standard-player-wrap">
-					<div class="standard-player">
-						<span><div class="audio_player"><embed type="application/x-shockwave-flash" src="http://assets.tumblr.com/swf/audio_player.swf?audio_file=https%3A%2F%2Fwww.tumblr.com%2Faudio_file%2Fhalcyon-theme%2F45792206102%2Ftumblr_mjtaxxxr0c1rg664a&amp;color=FFFFFF" quality="best" wmode="opaque" height="27" width="207"></div></span>
-					</div>
-				</div>
-				<div class="custom-player-wrap">
-					<div class="button-wrap">
-						<div class="button"></div>
-					</div>
-					<div class="bar">
-						<div class="buffered"></div>
-						<div class="progress"></div>
-					</div>
-				</div>
-				<div style="display: none;" class="overlay"></div>
-			</div>
-			<div class="song-meta clearfix">
-				<span class="artist">Grizzly Bear</span> - <span class="track">Foreground</span>
-				<div class="album">
-					from <span class="album">Veckatimest</span>
-				</div>
-				<div class="plays">27,167 plays</div>
-			</div>
-			<div class="caption clearfix rte">
+		<halcyon-article role="article" postType="quote" postTypeIcon="9" postDate="9 Weeks Ago" likes="8">
+			<div class="quote">“Why do all the icons show as <em>oversized letters</em>”? i.e. <span class="icon">B Y p r 9</span>?</div>
+			<div class="source clearfix rte">—<span class="source-text"></span></div>
+			<div class="caption">
 				<p>
-					<a href="http://en.wikipedia.org/wiki/Grizzly_Bear_(band)">Grizzly Bear</a>
+					<strong>Are you using Chrome or another Webkit browser?</strong>
 				</p>
 				<p>
-					Grizzly Bear is an American indie rock band from Brooklyn, New York, formed in 2002. The band consists of Edward Droste, Daniel Rossen, Chris Taylor and Christopher Bear.
+					The <code>@font-face</code> isn't well supported within Polymer elements, and this page uses a special font for its icons.<br>
+					While there is a <a href="http://robdodson.me/blog/2013/11/19/at-font-face-doesnt-work-in-shadow-dom/" target="_blank">workaround</a> for <code>&lt;template&gt;</code> tags,
+					<code>&lt;content&gt;</code> tag are broken.
 				</p>
-				<p class="tumblr-source">
-					Source: <a href="http://glowingmind.tumblr.com/post/45590909195">glowingmind</a>
+				<p>
+					Firefox supports it fine, but then again your Firefox isn't using Native ShadowDOM at the moment (but it is supported!)
 				</p>
 			</div>
 		</halcyon-article>
 
-		<halcyon-article role="article" postType="photo" postTypeIcon="s" postDate="35 days" likes="1233">
-			<div class="photo-wrap">
-				<img alt="Michael Chase Michael Chase is a self-taught photographer and fine arts student. He&amp;#8217;s recently been featured on Tumblr&amp;#8217;s spotlight and we really love his work." class="photo" data-highres="http://41.media.tumblr.com/tumblr_mc4176Ii0J1qh4vdzo1_500.jpg" data-width="1280" highres="" src="http://41.media.tumblr.com/tumblr_mc4176Ii0J1qh4vdzo1_500.jpg">
-			</div>
-			<div class="caption clearfix rte">
+		<halcyon-article role="article" postType="quote" postTypeIcon="9" postDate="9 Weeks Ago" likes="45">
+			<div class="quote">Can <code>ordered-columns</code> articles span multiple columns”?</div>
+			<div class="source clearfix rte">—<span class="source-text"></span></div>
+			<div class="caption">
 				<p>
-					<a href="http://areaofinterest.tumblr.com">Michael Chase</a>
+					<strong>Nope.</strong>
 				</p>
 				<p>
-					Michael Chase is a self-taught photographer and fine arts student. He’s recently been featured on Tumblr’s spotlight and we really love his work.
-				</p>
-				<p class="reblog-source">
-					<span class="icon">H</span> Reblogged from <a href="http://areaofinterest-deactivated20131.tumblr.com/post/33894568972/michael-chase">areaofinterest-deactivated20131</a>
+					It looks like you are looking for something like Masonry.  This web component might support things like that in the future, but that's not its goal at the moment.
 				</p>
 			</div>
 		</halcyon-article>
-
 
 	</ordered-columns>
 </body>
