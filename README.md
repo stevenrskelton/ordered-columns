@@ -28,7 +28,7 @@ Both the number of columns and column widths can be changed dynamically using Ja
 
 ## Live Examples
 
-> [NASA Wikipedia with Images](http://files.stevenskelton.ca/ordered-columns/examples/nasa.html)
+> [NASA Mission Timeline](http://files.stevenskelton.ca/ordered-columns/examples/nasa.html)
 
 > [Halcyon Theme](http://files.stevenskelton.ca/ordered-columns/examples/halcyon.html)
 
