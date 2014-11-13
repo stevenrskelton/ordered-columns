@@ -33,16 +33,16 @@
 		<core-header-panel navigation flex mode="seamed">
 			<core-toolbar><div style="width:100%;margin-left:0;margin-right:16px;text-align:center;font-size:18px;"><strong>&lt;ordered-columns&gt;</strong><br>Documentation</div></core-toolbar>
 			<core-menu on-core-select="{{changePage}}" id="docmenu">
-				<core-item link="index.html" label="Getting Started" icon="help"></core-item>
-				<core-submenu on-tap="{{submenuclick}}" label="Features" icon="drive-keep">
-					<core-item link="about.html" label="About Columns"></core-item>
-					<core-item link="dom-mutation.html" label="DOM Mutation"></core-item>
-					<core-item link="template-repeat.html" label="Template Repeat"></core-item>
+				<core-item on-click="{{redirect}}" link="index.html" label="Getting Started" icon="help"></core-item>
+				<core-submenu on-click="{{redirect}}" on-tap="{{submenuclick}}" label="Features" icon="grade">
+					<core-item on-click="{{redirect}}" link="about.html" label="About Columns"></core-item>
+					<core-item on-click="{{redirect}}" link="dom-mutation.html" label="DOM Mutation"></core-item>
+					<core-item on-click="{{redirect}}" link="template-repeat.html" label="Template Repeat"></core-item>
 				</core-submenu>
-				<core-item link="css.html" label="CSS Styling" icon="drive-drawing"></core-item>
-				<core-submenu on-tap="{{submenuclick}}" label="Demos" icon="launch">
-					<core-item link="nasa.html" label="NASA Wikipedia"></core-item>
-					<core-item link="halcyon.html" label="Halcyon Theme"></core-item>
+				<core-item on-click="{{redirect}}" link="css.html" label="CSS Styling" icon="text-format"></core-item>
+				<core-submenu on-click="{{redirect}}" on-tap="{{submenuclick}}" label="Demos" icon="launch">
+					<core-item on-click="{{redirect}}" link="nasa.html" label="NASA Timeline"></core-item>
+					<core-item on-click="{{redirect}}" link="halcyon.html" label="Halcyon Theme"></core-item>
 				</core-submenu>
 			</core-menu>
 		</core-header-panel>
@@ -67,6 +67,11 @@
 </template>
 <script>
 	Polymer({
+		redirect: function(e,i,obj){
+			var link = obj.getAttribute('link');
+			if(link !== null) document.location.href = link;
+			else obj.toggle();
+		},
 		raw: false,
 		init: false,
 		changePage: function(e,obj){
