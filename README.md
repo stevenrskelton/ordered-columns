@@ -41,7 +41,7 @@ Both the number of columns and column widths can be changed dynamically using Ja
 2. Import Web Components' polyfill:
 
 	```html
-	<script src="bower_components/platform/platform.js"></script>
+	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 	```
 
 3. Import Custom Element:
