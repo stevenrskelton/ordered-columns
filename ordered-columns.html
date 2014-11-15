@@ -27,9 +27,6 @@
 				></td></template>
 			</tr>
 		</table>
-		<div style="display:none">
-			<content id="hiddenDiv" select='article,[role="article"]'></content>
-		</div>
 	</template>
 	<script>
 	"use strict";
@@ -70,26 +67,36 @@
 			var self = this;
 			this.setColumnWidths();
 			this.async(function() {
-				var hiddenDiv = self.$.hiddenDiv;
-				self.items.forEach(function(element,i){
-					hiddenDiv.appendChild(element);
-				});
+				[].forEach.call(self.shadowRoot.querySelectorAll('.column'), function(c){ c.innerHTML = ''; });
 				self.moveItems(self.items);
 			});
 		},
 		load: function(){
 			var self = this;
 			this.setColumnWidths();
+			var items = [];
+			[].forEach.call(this.querySelectorAll('article,[role="article"]'), function(o){
+				if(o.parentNode === self) items.push(o);
+			});
+			if(items.length===0){
+				[].forEach.call(this.children, function(o){
+					if(o.parentNode === self && (o.nodeName === 'ARTICLE' || (o.getAttribute && o.getAttribute('role') === 'article'))) items.push(o);
+				});
+			}
+			this.items = items;
 			this.async(function() {
-				var items = [];
-				[].forEach.call(self.$.hiddenDiv.getDistributedNodes(), function(o){ items.push(o)});
-				self.items = items;
-				self.moveItems(items);
+				if(self.items.length===0){
+					var items = [];
+					[].forEach.call(self.querySelectorAll('article,[role="article"]'), function(o){
+						if(o.parentNode === self) items.push(o);
+					});
+					self.items = items;
+				}
+				self.moveItems(items || self.items);
 			});
 		},
 		moveItems: function(items){
 		console.log('moveItems');
-		console.log(this.clientWidth);
 			var columns = this.shadowRoot.querySelectorAll('.column');
 			items.forEach(function(element,i){
 				var column = columns[0];
