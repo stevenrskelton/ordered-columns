@@ -4,7 +4,10 @@
 Polymer Web Component that builds vertically ordered columns (timelines) from arbitrary DOM content.
 Unlike CSS columns, earlier content is always rendered closer to the top of the page than later content.
 
-Both the number of columns and column widths can be changed dynamically using Javascript or window resize events, ensuring elements are always rendered in the correct vertical order.
+Both the number of columns and column widths can be preconfigured or changed dynamically using Javascript and window resize events, ensuring elements are always rendered in the correct vertical order.
+
+Unlike other other grid layout libraries, such as [Masonry](http://masonry.desandro.com/), this web component rearranges DOM elements instead of using CSS tricks to achieve arrangements.
+This allows better overall CSS support for styling elements, as well as retaining the ability to use nth-of-type matchers.
 
 ## Automatic Element Ordering
 
