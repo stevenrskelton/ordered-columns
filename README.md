@@ -20,11 +20,13 @@ Both the number of columns and column widths can be changed dynamically using Ja
 
 > [About CSS Columns](http://files.stevenskelton.ca/ordered-columns/examples/about.html)
 
-> [DOM Mutations](http://files.stevenskelton.ca/ordered-columns/examples/dom-mutations.html)
+> [DOM Mutations](http://files.stevenskelton.ca/ordered-columns/examples/dom-mutation.html)
 
 > [Template Repeat](http://files.stevenskelton.ca/ordered-columns/examples/template-repeat.html)
 
 > [CSS Styles](http://files.stevenskelton.ca/ordered-columns/examples/css.html)
+
+> [Auto Column Count](http://files.stevenskelton.ca/ordered-columns/examples/adaptive-number-of-columns.html)
 
 ## Live Examples
 
