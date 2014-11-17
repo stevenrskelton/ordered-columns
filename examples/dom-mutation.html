@@ -21,6 +21,9 @@
 			background-color: Thistle;
 			padding: 10px;
 		}
+		ordered-columns::shadow article.new-article {
+			background-color: Plum;
+		}
 	</style>
 </head>
 <body unresolved is="project-docs">
@@ -38,6 +41,9 @@
 	All attributes, such as <code>count</code> are also observed for change, so they update immediately.
 
 	<p>
+		Elements normally are appended to the bottom, but they can also be prepended to the top by giving them the CSS class <code>new-article</code>.  Adding to
+		the top forces a redraw as new positions have to be recalculated.
+	</p>
 
 	<polymer-element name="mdn-array" style="display:block;">
 		<template>
@@ -63,7 +69,11 @@
 				<input type="number" style="text-align:right;width:35px;" min="0" value="{{count}}" on-change="{{changeCount}}">
 			</div>
 			<div class="user-action">
-				Redraw All on Resize:
+				Insert to Beginning:
+				<input type="checkbox" on-change="{{changeClass}}">
+			</div>
+			<div class="user-action">
+				Disable Redraw on Resize:
 				<input type="checkbox" on-change="{{changeRedraw}}">
 			</div>
 		</template>
@@ -107,6 +117,8 @@
 				t.content.querySelector('a').href = item.link;
 				t.content.querySelector('a').innerHTML = item.name;
 				t.content.querySelector('span').innerHTML = item.summary;
+				if(this.toHead) t.content.querySelector('article').classList.add('new-article');
+				else t.content.querySelector('article').classList.remove('new-article');
 				var clone = document.importNode(t.content, true);
 				oc.appendChild(clone);
 				//advance
@@ -118,7 +130,11 @@
 			},
 			changeRedraw: function(e){
 				var oc = document.getElementById('test');
-				oc.redraw = e.target.checked;
+				oc.noRedraw = e.target.checked;
+			},
+			toHead: false,
+			changeClass: function(){
+				this.toHead = !this.toHead;
 			}
 		});
 		</script>

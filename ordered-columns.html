@@ -6,7 +6,7 @@
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="ordered-columns" attributes="count redraw columnWidth">
+<polymer-element name="ordered-columns" attributes="count noRedraw columnWidth">
 	<template>
 		<style>
 			:host {
@@ -32,18 +32,18 @@
 	"use strict";
 	Polymer({
 		columnWidth: null,
-		redraw: false,
+		noRedraw: false,
 		ready: function(){
 			var self = this;
 			this.load();
 			window.addEventListener('resize', function(e) {
-				if(self.redraw) self.refresh();
+				if(!self.noRedraw) self.refresh();
 			});
 			this.onMutation(this, this.append);
 		},
 		count: 1,
 		observe: {
-			count: 'refresh'
+			'count columnWidth': 'refresh'
 		},
 		append: function(observer, mutations){
 			var self = this;
@@ -52,18 +52,30 @@
 					var newArticles = [].filter.call(m.addedNodes, function(element){
 						return element.nodeName === 'ARTICLE' || (element.getAttribute && element.getAttribute('role') === 'article');
 					});
+					var hasTopItems = false;
 					newArticles.forEach(function(element){
-						self.items.push(element);
+						if(element.classList.contains('new-article')){
+							hasTopItems = true;
+							self.items.unshift(element);
+						}else self.items.push(element);
 					});
-					self.async(function() {
-						self.moveItems(newArticles);
-					});
+					if(hasTopItems){
+						self.refresh();
+					}else{
+						self.async(function() {
+							self.moveItems(newArticles);
+						});
+					}
 				}
 			});
 			this.onMutation(this, this.append);
 		},
 		refresh: function(){
 		console.log('refresh');
+			this.job('refresh', this.refreshJob);
+		},
+		refreshJob: function(){
+		console.log('refreshJob');
 			var self = this;
 			this.setColumnWidths();
 			this.async(function() {
