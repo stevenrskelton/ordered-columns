@@ -6,8 +6,8 @@ Unlike CSS columns, earlier content is always rendered closer to the top of the 
 
 Both the number of columns and column widths can be preconfigured or changed dynamically using Javascript and window resize events, ensuring elements are always rendered in the correct vertical order.
 
-Unlike other other grid layout libraries, such as [Masonry](http://masonry.desandro.com/), this web component rearranges DOM elements instead of using CSS tricks to achieve arrangements.
-This allows better overall CSS support for styling elements, as well as retaining the ability to use nth-of-type matchers.
+Unlike other other grid layout libraries such as [Masonry](http://masonry.desandro.com/), this web component rearranges DOM elements instead of using CSS repositioning.
+This allows better overall CSS support for styling elements, better support for flex/% based sizing, as well as retaining the ability to use nth-of-type CSS matchers.
 
 ## Automatic Element Ordering
 
