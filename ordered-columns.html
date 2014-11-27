@@ -71,11 +71,11 @@
 			this.onMutation(this, this.append);
 		},
 		refresh: function(){
-		console.log('refresh');
+		//console.log('refresh');
 			this.job('refresh', this.refreshJob);
 		},
 		refreshJob: function(){
-		console.log('refreshJob');
+		//console.log('refreshJob');
 			var self = this;
 			this.setColumnWidths();
 			this.async(function() {
@@ -108,7 +108,7 @@
 			});
 		},
 		moveItems: function(items){
-		console.log('moveItems');
+		//console.log('moveItems');
 			var columns = this.shadowRoot.querySelectorAll('.column');
 			items.forEach(function(element,i){
 				var column = columns[0];
@@ -119,7 +119,7 @@
 			});
 		},
 		setColumnWidths: function(){
-		console.log('setColumnWidths');
+		//console.log('setColumnWidths');
 			var arr = [];
 			var columnWidth = +this.columnWidth;
 			if(columnWidth > 0){
