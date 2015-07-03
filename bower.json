@@ -27,10 +27,10 @@
     "chronological"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#>=0.5.1"
+    "polymer": "Polymer/polymer#^0.5.5"
   },
   "devDependencies": {
-    "core-elements": "Polymer/core-elements#>=0.5.1",
+    "core-elements": "Polymer/core-elements#^0.5.5",
     "prism-js": "prism-js#>=0.1.0"
   }
 }
