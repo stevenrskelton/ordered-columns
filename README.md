@@ -21,21 +21,21 @@ This allows better overall CSS support for styling elements, better support for 
 
 ## Documentation
 
-> [About CSS Columns](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/about.html)
+> [About CSS Columns](http://stevenrskelton.github.io/ordered-columns/examples/about.html)
 
-> [DOM Mutations](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/dom-mutation.html)
+> [DOM Mutations](http://stevenrskelton.github.io/ordered-columns/examples/dom-mutation.html)
 
-> [Template Repeat](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/template-repeat.html)
+> [Template Repeat](http://stevenrskelton.github.io/ordered-columns/examples/template-repeat.html)
 
-> [CSS Styles](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/css.html)
+> [CSS Styles](http://stevenrskelton.github.io/ordered-columns/examples/css.html)
 
-> [Auto Column Count](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/adaptive-number-of-columns.html)
+> [Auto Column Count](http://stevenrskelton.github.io/ordered-columns/examples/adaptive-number-of-columns.html)
 
 ## Live Examples
 
-> [NASA Mission Timeline](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/nasa.html)
+> [NASA Mission Timeline](http://stevenrskelton.github.io/ordered-columns/examples/nasa.html)
 
-> [Halcyon Theme](http://files.stevenskelton.ca/ordered-columns/ordered-columns/examples/halcyon.html)
+> [Halcyon Theme](http://stevenrskelton.github.io/ordered-columns/examples/halcyon.html)
 
 ## Usage
 
